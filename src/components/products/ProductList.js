@@ -4,12 +4,17 @@ import { Product } from "./Product"
 import "./Product.css"
 
 export const ProductList = () => {
-    const { products } = useContext(ProductContext)
+    const { products, productTypes } = useContext(ProductContext)
 
     return (
         <div className="products">
         {
-            products.map(p => <Product key={p.id} product={p} />)
+            products.map(p => {
+            
+                const type = productTypes.find(t => t.id === p.typeId) || {}
+                return <Product key={p.id} product={p} type={type} />
+            
+            })
         }
         </div>
     )

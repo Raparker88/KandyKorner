@@ -29,21 +29,35 @@ export const ProductProvider = (props) => {
             .then(getProducts)
     }
 
-    /*
-        Load all animals when the component is mounted. Ensure that
-        an empty array is the second argument to avoid infinite loop.
-    */
-    useEffect(() => {
-        getProducts()
-    }, [])
+    const [productTypes, setProductTypes] = useState([])
+    
+    const getProductTypes = () => {
+        return fetch("http://localhost:8088/productTypes")
+            .then(res => res.json())
+            .then(setProductTypes)
+    }
+    
+    const addProductTypes = productTypes => {
+        return fetch("http://localhost:8088/productTypes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(productTypes)
+        })
+            .then(getProductTypes)
+    }
+    
+
 
     useEffect(() => {
-        console.log("****  Product APPLICATION STATE CHANGED  ****")
-    }, [products])
+        getProducts()
+        getProductTypes()
+    }, [])
 
     return (
         <ProductContext.Provider value={{
-            products, addProduct
+            products, addProduct, productTypes, addProductTypes
         }}>
             {props.children}
         </ProductContext.Provider>
