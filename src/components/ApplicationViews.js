@@ -6,6 +6,7 @@ import { ProductList } from "./products/ProductList"
 import { Route } from "react-router-dom"
 import { EmployeeProvider } from "./employees/EmployeeProvider"
 import { EmployeeList } from "./employees/EmployeeList"
+import { EmployeeForm } from "./employees/EmployeeForm"
 
 export const ApplicationViews = (props) => {
     return(
@@ -22,8 +23,12 @@ export const ApplicationViews = (props) => {
             </ProductProvider>
             <EmployeeProvider>
                 <LocationProvider>
-                    <Route path="/employees">
-                        <EmployeeList/>
+                    <Route exact path="/employees" render={
+                        props => <EmployeeList {...props}/>
+                    } />
+                    <Route exact path="/employees/create" render={
+                        props => <EmployeeForm {...props} />
+                    } >
                     </Route>
                 </LocationProvider>
             </EmployeeProvider>
