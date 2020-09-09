@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef, useContext } from "react"
 import "./Login.css"
 
 export const Register = (props) => {
@@ -8,6 +8,8 @@ export const Register = (props) => {
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
+
+
 
     const existingUserCheck = () => {
         return fetch(`http://localhost:8088/customers?email=${email.current.value}`)
@@ -36,6 +38,7 @@ export const Register = (props) => {
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
                                 localStorage.setItem("kandy_customer", createdUser.id)
+
                                 props.history.push("/")
                             }
                         })

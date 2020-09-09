@@ -7,6 +7,8 @@ import { Route } from "react-router-dom"
 import { EmployeeProvider } from "./employees/EmployeeProvider"
 import { EmployeeList } from "./employees/EmployeeList"
 import { EmployeeForm } from "./employees/EmployeeForm"
+import { CustomerProductProvider } from "./products/CustomerProductProvider"
+import { MyOrder } from "./orders/MyOrder"
 
 export const ApplicationViews = (props) => {
     return(
@@ -17,9 +19,14 @@ export const ApplicationViews = (props) => {
                 </Route>
             </LocationProvider>
             <ProductProvider>
-                <Route path="/products">
-                    <ProductList/>
-                </Route>
+                <CustomerProductProvider>
+                    <Route path="/products">
+                        <ProductList/>
+                    </Route>
+                    <Route path="/MyOrder">
+                        <MyOrder/>
+                    </Route>
+                </CustomerProductProvider>
             </ProductProvider>
             <EmployeeProvider>
                 <LocationProvider>

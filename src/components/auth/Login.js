@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef, useContext } from "react"
 import { Link } from "react-router-dom";
 import "./Login.css"
 
@@ -8,6 +8,7 @@ export const Login = props => {
     const password = useRef()
     const existDialog = useRef()
     const passwordDialog = useRef()
+
 
     const existingUserCheck = () => {
         return fetch(`http://localhost:8088/customers?email=${email.current.value}`)
