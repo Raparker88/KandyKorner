@@ -63,10 +63,10 @@ export const EmployeeForm = (props) => {
                 <div className="form-group">
                     <h4>Is this employee a manager?</h4>
                     <label>
-                        <input type="radio" onChange={() => setManager(true)} name="manager"/>Yes
+                        <input type="radio" onClick={() => setManager(true)} name="manager"/>Yes
                     </label>
                     <label>
-                        <input type="radio" onChange={() => setManager(false)} name="manager" />No
+                        <input type="radio" onClick={() => setManager(false)} name="manager" />No
                     </label>
                 </div>
             </fieldset>
